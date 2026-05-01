@@ -40,6 +40,12 @@ app.use("/api/ai", aiRoutes);
 app.use("/api/proxy", proxyRoutes);
 app.use("/api/comments", replyRoutes);
 
+// Catch-all: proxy dynamic imports/assets from SPAs (e.g. /_next, /assets)
+// When a proxied site dynamically imports assets, they come here with a Referer header
+// pointing to the proxied URL so we can resolve the correct origin.
+app.get(/^\/(assets|static|_next|chunks|js|css|fonts|images|media|public|mkt-ssr-statics)\//, proxyAsset);
+app.get(/\.(js|mjs|css|woff|woff2|ttf|eot|svg|png|jpg|jpeg|gif|ico|json|map)$/, proxyAsset);
+
 // Serve Frontend in Production
 if (process.env.NODE_ENV === "production") {
   const frontendPath = path.join(process.cwd(), "../frontend/dist");
@@ -49,13 +55,6 @@ if (process.env.NODE_ENV === "production") {
       res.sendFile(path.join(frontendPath, "index.html"));
     }
   });
-} else {
-  // Development catch-all: proxy dynamic imports/assets from SPAs
-  // When a proxied SPA (React/Vite app) dynamically imports chunks like
-  // /assets/McpServer-abc.js, the request comes here with a Referer header
-  // pointing to the original proxied URL so we can resolve the correct origin.
-  app.get(/^\/(assets|static|_next|chunks|js|css|fonts|images|media|public)\//, proxyAsset);
-  app.get(/\.(js|mjs|css|woff|woff2|ttf|eot|svg|png|jpg|jpeg|gif|ico|json|map)$/, proxyAsset);
 }
 
 app.listen(PORT, () => {

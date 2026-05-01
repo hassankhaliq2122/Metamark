@@ -454,7 +454,7 @@ export const ProjectView = ({
               scrolling="no"
               onLoad={() => setIframeLoading(false)}
               referrerPolicy="no-referrer"
-              sandbox="allow-scripts allow-forms"
+              sandbox="allow-scripts allow-same-origin allow-forms"
             />
             
             <div className="absolute inset-0 pointer-events-none">
