@@ -46,12 +46,12 @@ export const proxyRequest = async (req: Request, res: Response) => {
       throw new Error(`Target site returned ${response.status} ${response.statusText}`);
     }
 
-    const contentType = response.headers["content-type"] || "";
+    const contentType = (response.headers["content-type"] as string) || "";
 
     // If it's not HTML, return as-is
     if (!contentType.includes("text/html")) {
       res.setHeader("Content-Type", contentType);
-      if (response.headers["cache-control"]) res.setHeader("Cache-Control", response.headers["cache-control"]);
+      if (response.headers["cache-control"]) res.setHeader("Cache-Control", response.headers["cache-control"] as string);
       return res.send(response.data);
     }
 
@@ -79,7 +79,7 @@ export const proxyRequest = async (req: Request, res: Response) => {
       const $el = $(el);
 
       // Force links to stay in the iframe
-      if (el.name && el.name.toLowerCase() === 'a') {
+      if ($el.is('a')) {
         $el.attr('target', '_self');
       }
 

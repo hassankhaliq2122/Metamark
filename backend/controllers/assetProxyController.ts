@@ -49,11 +49,11 @@ export const proxyAsset = async (req: Request, res: Response) => {
       return res.status(response.status).send(`Asset not found: ${assetUrl}`);
     }
 
-    const contentType = response.headers["content-type"] || "application/octet-stream";
+    const contentType = (response.headers["content-type"] as string) || "application/octet-stream";
     res.setHeader("Content-Type", contentType);
     res.setHeader("Access-Control-Allow-Origin", "*");
     if (response.headers["cache-control"]) {
-      res.setHeader("Cache-Control", response.headers["cache-control"]);
+      res.setHeader("Cache-Control", response.headers["cache-control"] as string);
     }
     res.send(response.data);
   } catch (err: any) {

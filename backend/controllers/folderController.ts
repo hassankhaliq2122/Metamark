@@ -42,7 +42,7 @@ export const deleteFolder = async (req: Request, res: Response) => {
   try {
     // Cascade: delete all projects in this folder and their comments
     const projects = await Project.find({ folderId: req.params.id });
-    const projectIds = projects.map((p) => p._id);
+    const projectIds = projects.map((p) => p._id.toString());
     await Comment.deleteMany({ projectId: { $in: projectIds } });
     await Project.deleteMany({ folderId: req.params.id });
     await Folder.findByIdAndDelete(req.params.id);
