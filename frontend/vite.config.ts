@@ -15,17 +15,17 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://metamark-production.up.railway.app',
         changeOrigin: true,
       },
       '/uploads': {
-        target: 'http://localhost:5000',
+        target: 'https://metamark-production.up.railway.app',
         changeOrigin: true,
       },
       // Catch-all: any path that isn't a known Vite path and comes from a proxied page
       // gets forwarded to backend which resolves it via Referer header
       '/__proxy_assets': {
-        target: 'http://localhost:5000',
+        target: 'https://metamark-production.up.railway.app',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/__proxy_assets/, '/api/proxy-asset'),
       },
