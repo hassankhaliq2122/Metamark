@@ -2,18 +2,18 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import path from "path";
-import connectDB from "./config/db.ts";
-import { uploadDir } from "./middlewares/upload.ts";
-import { proxyAsset } from "./controllers/assetProxyController.ts";
+import connectDB from "./config/db.js";
+import { uploadDir } from "./middlewares/upload.js";
+import { proxyAsset } from "./controllers/assetProxyController.js";
 
 // Routes
-import folderRoutes from "./routes/folderRoutes.ts";
-import projectRoutes from "./routes/projectRoutes.ts";
-import commentRoutes from "./routes/commentRoutes.ts";
-import uploadRoutes from "./routes/uploadRoutes.ts";
-import aiRoutes from "./routes/aiRoutes.ts";
-import proxyRoutes from "./routes/proxyRoutes.ts";
-import replyRoutes from "./routes/replyRoutes.ts";
+import folderRoutes from "./routes/folderRoutes.js";
+import projectRoutes from "./routes/projectRoutes.js";
+import commentRoutes from "./routes/commentRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
+import aiRoutes from "./routes/aiRoutes.js";
+import proxyRoutes from "./routes/proxyRoutes.js";
+import replyRoutes from "./routes/replyRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;

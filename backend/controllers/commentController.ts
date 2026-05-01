@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Comment } from "../models/index.ts";
+import { Comment } from "../models/index.js";
 
 export const getComments = async (req: Request, res: Response) => {
   try {

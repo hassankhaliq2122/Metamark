@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import mongoose from "mongoose";
-import { Project } from "../models/index.ts";
-import { Comment } from "../models/index.ts";
+import { Project } from "../models/index.js";
+import { Comment } from "../models/index.js";
 
 export const getProjects = async (_req: Request, res: Response) => {
   if (mongoose.connection.readyState !== 1) {

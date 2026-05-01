@@ -1,3 +1,3 @@
-export { Folder } from "./Folder.ts";
-export { Project } from "./Project.ts";
-export { Comment } from "./Comment.ts";
+export { Folder } from "./Folder.js";
+export { Project } from "./Project.js";
+export { Comment } from "./Comment.js";
