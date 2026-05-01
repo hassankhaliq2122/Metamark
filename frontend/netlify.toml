@@ -14,25 +14,21 @@
   from = "/assets/*"
   to = "https://metamark-production.up.railway.app/assets/:splat"
   status = 200
-  force = true
 
 [[redirects]]
   from = "/static/*"
   to = "https://metamark-production.up.railway.app/static/:splat"
   status = 200
-  force = true
 
 [[redirects]]
   from = "/_next/*"
   to = "https://metamark-production.up.railway.app/_next/:splat"
   status = 200
-  force = true
 
 [[redirects]]
   from = "/mkt-ssr-statics/*"
   to = "https://metamark-production.up.railway.app/mkt-ssr-statics/:splat"
   status = 200
-  force = true
 
 [[redirects]]
   from = "/*"
